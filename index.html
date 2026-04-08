@@ -1,0 +1,246 @@
+<!TAMPILAN UTAMA>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MEMORY BEST FRIEND</title>
+<style>
+  /* ===== MENU TAMPILAN ===== */
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .post-container {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZJ5Uo7cDwQLg3fT6hZZXRtF-vwfHmW_0xDNvdaHuhuBnYgL3dBmSQdW0&s=10');
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url('https://i.ibb.co.com/cKf5WGD4/IMG-20260405-073008.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .username {
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  .timestamp {
+    color: #777;
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+
+  .text-content {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* ===== STYLE REFRESH BUTTON ===== */
+  .refresh-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;  
+    height: 40px; 
+    border-radius: 50%;
+    background: #1976d2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 10;
+  }
+
+  .refresh-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  }
+
+  .refresh-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+
+  .popup {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background: white;
+    padding: 8px 14px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    font-size: 14px;
+  }
+
+  .popup.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .spinner {
+    border: 3px solid #ccc;
+    border-top: 3px solid #1976d2;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="post-container">
+    <div class="author-info">
+      <div class="avatar"></div>
+      <div class="username">Youtube Exx Go</div>
+      <div class="timestamp">· Kamis,9 Apr 2026</div>
+    </div>
+    <div class="text-content">Mohon maaf jika sering error, karna api key youtube nya di kasih 10k, dan setiap search dll itu memakan 100 quota, jadi mohon maaf yaa, saya sedang mengembanglam versi lain untuk tanpa batas quota kami sedang mengerjakan project baru jadi biar satunya error, kalian pakai yang versi project baru dari kami, mohon bersabar yaa🙏</div>
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyY3I5cXRqeDd6c3lxeHl2dmptYWVpMmNldzhpZWY0OWpmdjA3anB0MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4sfHXAALLYBQzPcWk/giphy.gif" alt="PNG" />
+  </div>
+
+  <div class="refresh-btn" id="refreshButton" title="Refresh Page">
+    <svg class="refresh-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+    </svg>
+  </div>
+
+  <div class="popup" id="popupMessage">
+    <div class="spinner"></div>
+    <span>Refreshing page...</span>
+  </div>
+
+<script>
+  const refreshBtn = document.getElementById('refreshButton');
+  const popup = document.getElementById('popupMessage');
+
+  refreshBtn.addEventListener('click', () => {
+    popup.classList.add('show');
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  });
+</script>
+</body>
+</html>
+
+<!BACKGROUND>
+<style>
+  #bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    user-select: none;
+    pointer-events: none;
+  }
+  #video-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0;
+    background: transparent;
+  }
+</style>
+
+<video autoplay muted loop id="bg-video" playsinline>
+  <source src="https://i.imgur.com/sVF2ZAp.mp4" type="video/mp4">
+</video>
+
+<div id="video-overlay"></div>
+
+<script>
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.getElementById('bg-video').ondragstart = () => false;
+</script>
+
+
+<!ANTI DESKTOP>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Website Tidak Support Desktop</title>
+<style>
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: black;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 40vh;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<div id="overlay">Anda harus menggunakan HP atau menonaktifkan desktop</div>
+
+<script>
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+window.onload = function() {
+  if (!isMobile()) {
+    document.getElementById('overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+};
+</script>
+
+</body>
+</html>
+
